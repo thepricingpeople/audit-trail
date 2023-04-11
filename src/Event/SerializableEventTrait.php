@@ -14,7 +14,7 @@ trait SerializableEventTrait
      */
     public function serialize()
     {
-        return serialize(get_object_vars($this));
+        return $this->__serialize();
     }
 
     /**
@@ -24,6 +24,27 @@ trait SerializableEventTrait
      * @return void
      */
     public function unserialize($data)
+    {
+        $this->__unserialize($data);
+    }
+
+    /**
+     * Returns the string representation of this object.
+     *
+     * @return string
+     */
+    public function __serialize()
+    {
+        return serialize(get_object_vars($this));
+    }
+
+    /**
+     * Takes the string representation of this object so it can be reconstructed.
+     *
+     * @param string $data serialized string
+     * @return void
+     */
+    public function __unserialize($data)
     {
         $vars = unserialize($data);
         foreach ($vars as $var => $value) {
@@ -36,7 +57,7 @@ trait SerializableEventTrait
      *
      * @return void
      */
-    protected function basicSerialize()
+    protected function basicSerialize(): mixed
     {
         return [
             'type' => $this->getEventType(),

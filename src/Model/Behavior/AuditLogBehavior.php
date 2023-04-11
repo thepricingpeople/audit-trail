@@ -291,9 +291,9 @@ class AuditLogBehavior extends Behavior
             $transaction,
             $primary,
             $this->_table->getTable(),
-            $parent,
+            $displayValue,
             $original,
-            $displayValue
+            $parent,
         );
 
         $options['_auditQueue']->attach($entity, $auditEvent);

@@ -20,11 +20,11 @@ class AuditDeleteEvent extends BaseEvent
      * @param string $transactionId The global transaction id
      * @param mixed $id The primary key record that got deleted
      * @param string $source The name of the source (table) where the record was deleted
-     * @param null $parentSource The name of the source (table) that triggered this change
+     * @param string|null $displayValue The display field's value
      * @param array $original The original values the entity had before it got changed
-     * @param string|null $displayValue The displa field's value
+     * @param null $parentSource The name of the source (table) that triggered this change
      */
-    public function __construct(string $transactionId, $id, $source, $parentSource = null, $original = [], ?string $displayValue)
+    public function __construct(string $transactionId, $id, $source, ?string $displayValue, array $original = [], $parentSource = null)
     {
         parent::__construct($transactionId, $id, $source, [], $original, $displayValue);
     }
